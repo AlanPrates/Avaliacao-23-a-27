@@ -44,13 +44,16 @@ public:
         cout << "Quantos nomes deseja adicionar? ";
         cin >> n;
         
+        cin.ignore(); 
+        
         for (int i = 0; i < n; i++) {
             string nome;
             cout << "Digite o nome " << i+1 << ": ";
-            cin >> nome;
+            getline(cin, nome);
             lista.push_back(nome);
         }
     }
+
 
     void mostraMediana() {
         if (lista.size() % 2 == 1) {
