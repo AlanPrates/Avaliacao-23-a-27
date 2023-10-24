@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <algorithm> // Adicionando a biblioteca para utilizar a fun��o sort
 
 using namespace std;
 
@@ -9,7 +8,6 @@ class Data {
     int dia, mes, ano;
 public:
     static int compara(Data d1, Data d2) { 
-        // M�todo de compara��o de datas (ainda n�o implementado)
         return 0;
     }
     
@@ -31,17 +29,15 @@ public:
 
 class Lista {
 public:
-    virtual void entradaDeDados() = 0;
-    virtual void mostraMediana() = 0;
-    virtual void mostraMenor() = 0;
-    virtual void mostraMaior() = 0;
-    virtual void listarEmOrdem() = 0; // Nova fun��o para listar em ordem
-    virtual void mostraNPrimeiros(int n) = 0; // Nova fun��o para mostrar os N primeiros elementos
+    virtual void entradaDeDados() =0;
+    virtual void mostraMediana() =0;
+    virtual void mostraMenor() =0;
+    virtual void mostraMaior() =0;
 };
 
 class ListaNomes : public Lista {
     vector<string> lista;
-    
+
 public:
     void entradaDeDados() {
         int n;
@@ -87,29 +83,6 @@ public:
                 }
             }
             cout << "O maior nome é: " << maior << endl;
-        } else {
-            cout << "A lista está vazia." << endl;
-        }
-    }
-
-    void listarEmOrdem() {
-        if (!lista.empty()) {
-            cout << "Nomes em ordem:" << endl;
-            sort(lista.begin(), lista.end());
-            for (string nome : lista) {
-                cout << nome << endl;
-            }
-        } else {
-            cout << "A lista está vazia." << endl;
-        }
-    }
-
-    void mostraNPrimeiros(int n) {
-        if (!lista.empty()) {
-            cout << "Os primeiros " << n << " nomes:" << endl;
-            for (int i = 0; i < min(n, int(lista.size())); i++) {
-                cout << lista[i] << endl;
-            }
         } else {
             cout << "A lista está vazia." << endl;
         }
@@ -173,36 +146,11 @@ public:
             cout << "A lista está vazia." << endl;
         }
     }
-
-    void listarEmOrdem() {
-        if (!lista.empty()) {
-            cout << "Datas em ordem:" << endl;
-            sort(lista.begin(), lista.end(), [](Data& d1, Data& d2) {
-                return Data::compara(d1, d2) < 0;
-            });
-            for (Data d : lista) {
-                cout << d.toString() << endl;
-            }
-        } else {
-            cout << "A lista está vazia." << endl;
-        }
-    }
-
-    void mostraNPrimeiros(int n) {
-        if (!lista.empty()) {
-            cout << "As primeiras " << n << " datas:" << endl;
-            for (int i = 0; i < min(n, int(lista.size())); i++) {
-                cout << lista[i].toString() << endl;
-            }
-        } else {
-            cout << "A lista está vazia." << endl;
-        }
-    }
 };
 
 class ListaSalarios : public Lista {
     vector<float> lista;
-    
+
 public:
     void entradaDeDados() {
         int n;
@@ -216,6 +164,7 @@ public:
             lista.push_back(salario);
         }
     }
+
     void mostraMediana() {
         if (lista.size() % 2 == 1) {
             cout << "A mediana é: " << lista[lista.size()/2] << endl;
@@ -252,34 +201,11 @@ public:
             cout << "A lista está vazia." << endl;
         }
     }
-
-    void listarEmOrdem() {
-        if (!lista.empty()) {
-            cout << "Salários em ordem:" << endl;
-            sort(lista.begin(), lista.end());
-            for (float salario : lista) {
-                cout << salario << endl;
-            }
-        } else {
-            cout << "A lista está vazia." << endl;
-        }
-    }
-
-    void mostraNPrimeiros(int n) {
-        if (!lista.empty()) {
-            cout << "Os primeiros " << n << " salários:" << endl;
-            for (int i = 0; i < min(n, int(lista.size())); i++) {
-                cout << lista[i] << endl;
-            }
-        } else {
-            cout << "A lista está vazia." << endl;
-        }
-    }
 };
 
 class ListaIdades : public Lista {
     vector<int> lista;
-    
+
 public:
     void entradaDeDados() {
         int n;
@@ -330,57 +256,32 @@ public:
             cout << "A lista está vazia." << endl;
         }
     }
-
-    void listarEmOrdem() {
-        if (!lista.empty()) {
-            cout << "Idades em ordem crescente:" << endl;
-            sort(lista.begin(), lista.end());
-            for (int idade : lista) {
-                cout << idade << endl;
-            }
-        } else {
-            cout << "A lista está vazia." << endl;
-        }
-    }
-
-    void mostraNPrimeiros(int n) {
-        if (!lista.empty()) {
-            cout << "As primeiras " << n << " idades:" << endl;
-            for (int i = 0; i < min(n, int(lista.size())); i++) {
-                cout << lista[i] << endl;
-            }
-        } else {
-            cout << "A lista está vazia." << endl;
-        }
-    }
 };
 
 int main () {
     vector<Lista*> listaDeListas;
-    
+
     ListaNomes listaNomes;
     listaNomes.entradaDeDados();
     listaDeListas.push_back(&listaNomes);
-    
+
     ListaDatas listaDatas;
     listaDatas.entradaDeDados();
     listaDeListas.push_back(&listaDatas);
-    
+
     ListaSalarios listaSalarios;
     listaSalarios.entradaDeDados();
     listaDeListas.push_back(&listaSalarios);
-    
+
     ListaIdades listaIdades;
     listaIdades.entradaDeDados();
     listaDeListas.push_back(&listaIdades);
-    
+
     for (Lista* l : listaDeListas) {
         l->mostraMediana();
         l->mostraMenor();
         l->mostraMaior();
-        l->listarEmOrdem();
-        l->mostraNPrimeiros(3); // Mostra os 3 primeiros elementos de cada lista
     }
-    
+
     return 0;
 }
