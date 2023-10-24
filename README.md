@@ -19,9 +19,4 @@ A atividade deve ser feita durante a aula, desse modo, os commits e pushes do re
 ## Entrega em equipe
 
 - Data limite: até 27/10, às 17h50m.
-- Postar, no Moodle, link do repositório e identificar a branch onde a solução final está versionada, com os seguintes nomes:
-
-    - [Alan Prates](https://github.com/AlanPrates/Avaliacao-23-a-27/tree/AlanPrates) - Branch: alan_prates
-    - [Daniel Monteiro](link_para_repositorio) - Branch: daniel_monteiro
-    - [Danilo Silveira](link_para_repositorio) - Branch: danilo_silveira
-    - [Paulo Pereira](link_para_repositorio) - Branch: paulo_pereira
+- Postar, no Moodle, link do repositório e identificar a branch onde a solução final está versionada.
